@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Unicon - Music Landing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Smooth scroll for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+{% load static %}
+<body class="relative font-sans text-white min-h-screen">
+
+    <!-- Background Image -->
+    <img src="{% static 'images/bg_site.jpg' %}" alt="Background" 
+         class="absolute inset-0 w-full h-full object-cover brightness-50 blur-sm -z-10">
+
+    <!-- Page Content Overlay -->
+    <div class="relative z-10">
+
+<!-- Navbar -->
+<header class="fixed w-full bg-black bg-opacity-90 backdrop-blur-md z-50">
+    <nav class="container mx-auto flex items-center justify-between p-4">
+        <a href="#" class="text-2xl font-bold tracking-wide">Unicon</a>
+        <ul class="hidden md:flex space-x-8 text-gray-300">
+            <li><a href="#featured" class="hover:text-white">Featured</a></li>
+            <li><a href="#about" class="hover:text-white">About</a></li>
+            <li><a href="#contact" class="hover:text-white">Contact</a></li>
+        </ul>
+        <button class="md:hidden text-white" id="menu-btn" aria-label="Open menu">
+            &#9776;
+        </button>
+    </nav>
+</header>
+
+<!-- Mobile menu -->
+<div class="fixed inset-0 bg-black bg-opacity-95 hidden flex-col items-center justify-center space-y-8 text-3xl md:hidden" id="mobile-menu">
+    <a href="#featured" class="hover:text-white" onclick="toggleMenu()">Featured</a>
+    <a href="#about" class="hover:text-white" onclick="toggleMenu()">About</a>
+    <a href="#contact" class="hover:text-white" onclick="toggleMenu()">Contact</a>
+    <button onclick="toggleMenu()" class="text-gray-400 text-4xl">✕</button>
+</div>
+
+<!-- Hero Section -->
+<section class="relative bg-cover bg-center h-screen" style="background-image: url('/static/images/hero-bg.jpg');">
+    <div class="absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center px-6 text-center">
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6">Welcome to Unicon</h1>
+        <p class="text-lg md:text-2xl max-w-2xl mb-8 text-gray-300">Discover the freshest music and upcoming artists</p>
+        <a href="#featured" class="bg-red-600 hover:bg-red-700 text-white py-3 px-6 rounded font-semibold transition">Explore Now</a>
+    </div>
+</section>
+
+{% comment %} <!-- Featured Songs Section -->
+<section id="featured" class="container mx-auto py-16 px-6">
+    <h2 class="text-4xl font-bold mb-10 text-center">Featured Songs</h2>
+    <div class="grid gap-8 md:grid-cols-3">
+        {% for song in featured %}
+        <div class="bg-gray-900 rounded overflow-hidden shadow-lg hover:shadow-2xl transition duration-300">
+            <img src="{{ song.img }}" alt="{{ song.title }}" class="w-full h-64 object-cover" />
+            <div class="p-6">
+                <h3 class="text-2xl font-semibold mb-2">{{ song.title }}</h3>
+                <p class="text-gray-400 mb-1">By {{ song.artist }}</p>
+                <p class="text-gray-500 text-sm">Releases on {{ song.release_date }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section> {% endcomment %}
+
+{% load static %}
+<!-- Featured Songs Section -->
+<section id="featured" class="container mx-auto py-16 px-6">
+  <h2 class="text-4xl font-bold mb-10 text-center">Featured Songs</h2>
+
+  <div class="grid gap-8 md:grid-cols-3">
+    {% for song in featured %}
+      <div class="bg-gray-900 rounded overflow-hidden shadow-lg hover:shadow-2xl transition duration-300">
+        <img src="{{ song.img }}" alt="{{ song.title }}" class="w-full h-64 object-cover" />
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold mb-2 text-white">{{ song.title }}</h3>
+          <p class="text-gray-300 mb-1">By {{ song.artist }}</p>
+          <p class="text-gray-500 text-sm">Releases on {{ song.release_date }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+
+<!-- About Section -->
+<section id="about" class="bg-gray-900 py-16 px-6">
+  <div class="container mx-auto max-w-3xl text-center">
+    <h2 class="text-4xl font-bold mb-6 text-white">About Unicon</h2>
+    <p class="text-gray-300 text-lg leading-relaxed">
+      Unicon is a music platform dedicated to bringing you the latest and greatest in music video production and song releases. We spotlight emerging artists and ensure a premium listening experience for fans worldwide.
+    </p>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="bg-black py-16 px-6">
+  <div class="container mx-auto max-w-3xl text-center">
+    <h2 class="text-4xl font-bold mb-6 text-white">Contact Us</h2>
+    <p class="mb-2 text-gray-300">
+      Email: <a href="mailto:LateshGarg@unitune.in" class="text-red-500 hover:underline">LateshGarg@unitune.in</a>
+    </p>
+    <p class="text-gray-300">
+      Phone: <a href="tel:+917009274493" class="text-red-500 hover:underline">+91 70092 74493</a>
+    </p>
+  </div>
+</section>
+
+
+<script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function toggleMenu() {
+        mobileMenu.classList.toggle('hidden');
+    }
+
+    menuBtn.addEventListener('click', toggleMenu);
+</script>
+
+</body>
+</html>
