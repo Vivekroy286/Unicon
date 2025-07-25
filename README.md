@@ -1,4 +1,4 @@
-# 🎵 UNItune - Music Composer Company Platform
+#  UNItune - Music Composer Company Platform
 
 [![Live Site](https://unicon-0t5q.onrender.com)
 
